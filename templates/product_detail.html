@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ product.name }} - EasyBuy{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    {% if product.image %}
+    <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name }}">
+    {% else %}
+    <img src="{% static 'images/placeholder.png' %}" class="img-fluid rounded" alt="placeholder">
+    {% endif %}
+  </div>
+  <div class="col-md-6">
+    <h1>{{ product.name }}</h1>
+    <h3 class="text-primary">₹{{ product.price }}</h3>
+    <p>{{ product.description|linebreaksbr }}</p>
+    <p><strong>Availability:</strong> {% if product.in_stock %}In stock ({{ product.inventory }}){% else %}Out of stock{% endif %}</p>
+    <button class="btn btn-cta btn-lg" {% if not product.in_stock %}disabled{% endif %}>Add to Cart</button>
+  </div>
+</div>
+{% endblock %}

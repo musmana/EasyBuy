@@ -1,0 +1,1 @@
+web: gunicorn EasyBuy.wsgi --log-file -
